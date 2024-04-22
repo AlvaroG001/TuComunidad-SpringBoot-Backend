@@ -14,16 +14,16 @@ public class ReunionService {
     @Autowired
     private ReunionRepository reunionRepository;
 
+    public List<Reunion> findByCommunityId(Long communityId) {
+        return reunionRepository.findByComunidad_Id(communityId);
+    }
+
     public Reunion save(Reunion reunion) {
         return reunionRepository.save(reunion);
     }
 
     public List<Reunion> findAll() {
         return reunionRepository.findAll();
-    }
-
-    public List<Reunion> findByComunityId(String comunityId) {
-        return reunionRepository.findByComunityId(comunityId);
     }
 
     public Optional<Reunion> findById(Long id) {

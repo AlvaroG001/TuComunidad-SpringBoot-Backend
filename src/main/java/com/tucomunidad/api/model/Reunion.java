@@ -1,11 +1,6 @@
 package com.tucomunidad.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "reuniones")
@@ -15,23 +10,25 @@ public class Reunion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String comunityId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "community_id", nullable = false)
+    private Comunidad comunidad;
 
-    @Column(nullable = false)
+    @Column(name = "dia", nullable = false)
     private String day;
 
-    @Column(nullable = false)
+    @Column(name = "hora", nullable = false)
     private String hour;
 
-    @Column(nullable = false)
+    @Column(name = "mes", nullable = false)
     private String month;
 
-    @Column(nullable = false)
+    @Column(name = "año", nullable = false)
     private String year;
 
     @Column(nullable = false, length = 500)
     private String information;
+
 
     // Constructors
     public Reunion() {
@@ -46,12 +43,12 @@ public class Reunion {
         this.id = id;
     }
 
-    public String getComunityId() {
-        return comunityId;
+    public Comunidad getComunidad() {
+        return comunidad;
     }
 
-    public void setComunityId(String comunityId) {
-        this.comunityId = comunityId;
+    public void setComunidad(Comunidad comunidad) {
+        this.comunidad = comunidad;
     }
 
     public String getDay() {

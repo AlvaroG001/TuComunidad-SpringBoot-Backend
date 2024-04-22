@@ -15,20 +15,25 @@ public class ReunionController {
     @Autowired
     private ReunionService reunionService;
 
+    @GetMapping
+    public ResponseEntity<?> getReuniones(@RequestParam(required = false) String communityId) {
+        try {
+            if (communityId != null && !communityId.isEmpty()) {
+                Long id = Long.parseLong(communityId);
+                List<Reunion> reuniones = reunionService.findByCommunityId(id);
+                return ResponseEntity.ok(reuniones);
+            }
+            return ResponseEntity.ok(reunionService.findAll());
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid community ID: " + communityId);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Reunion> createReunion(@RequestBody Reunion reunion) {
-        return ResponseEntity.ok(reunionService.save(reunion));
+        Reunion savedReunion = reunionService.save(reunion);
+        return ResponseEntity.ok(savedReunion);
     }
-
-    @GetMapping
-    public ResponseEntity<List<Reunion>> getReuniones(@RequestParam(required = false) String comunityId) {
-        if (comunityId != null) {
-            return ResponseEntity.ok(reunionService.findByComunityId(comunityId));
-        }
-        return ResponseEntity.ok(reunionService.findAll());
-    }
-
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Reunion> getReunionById(@PathVariable Long id) {

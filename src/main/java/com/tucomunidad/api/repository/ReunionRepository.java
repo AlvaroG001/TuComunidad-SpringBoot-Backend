@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ReunionRepository extends JpaRepository<Reunion, Long> {
-    List<Reunion> findByComunityId(String comunityId);
+    List<Reunion> findByComunidad_Id(Long communityId);
 }
