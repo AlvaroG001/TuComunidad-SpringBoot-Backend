@@ -1,14 +1,9 @@
 package com.tucomunidad.api.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "comunidades") // Especifica el nombre de la tabla para evitar discrepancias
+@Table(name = "comunidades")
 public class Comunidad {
 
     @Id
@@ -33,9 +28,7 @@ public class Comunidad {
     @Column(nullable = false)
     private boolean pool;
 
-    // Constructor vacío necesario para JPA
-    public Comunidad() {
-    }
+    public Comunidad() {}
 
     // Getters y Setters
     public Long getId() {

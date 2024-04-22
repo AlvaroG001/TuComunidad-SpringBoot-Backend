@@ -6,16 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/comunidades")
 public class ComunidadController {
 
     @Autowired
     private ComunidadService comunidadService;
-
-    @PostMapping
-    public Comunidad createComunidad(@RequestBody Comunidad comunidad) {
-        return comunidadService.save(comunidad);
+    
+    @GetMapping
+    public List<Comunidad> getAllComunidades() {
+        return comunidadService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -23,5 +25,11 @@ public class ComunidadController {
         return comunidadService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Comunidad> createComunidad(@RequestBody Comunidad comunidad) {
+        Comunidad savedComunidad = comunidadService.save(comunidad);
+        return ResponseEntity.ok(savedComunidad);
     }
 }

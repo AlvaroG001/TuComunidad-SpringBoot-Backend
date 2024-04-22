@@ -1,7 +1,7 @@
 package com.tucomunidad.api.service;
 
-import com.tucomunidad.api.model.User;
-import com.tucomunidad.api.repository.UserRepository;
+import com.tucomunidad.api.model.Usuario;
+import com.tucomunidad.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,20 +9,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UsuarioService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
 
-    public List<User> findAll() {
+    public List<Usuario> findAll() {
         return userRepository.findAll();
     }
 
-    public Optional<User> findById(Long id) {
+    public Optional<Usuario> findById(Long id) {
         return userRepository.findById(id);
     }
 
-    public User save(User user) {
+    public Usuario save(Usuario user) {
         return userRepository.save(user);
     }
 
@@ -30,7 +30,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public Optional<User> findByEmail(String email) {
+    public Optional<Usuario> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 }
