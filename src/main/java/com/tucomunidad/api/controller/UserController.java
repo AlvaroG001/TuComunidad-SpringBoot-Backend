@@ -35,6 +35,8 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
+        logger.info("Creating user with email: {}", user.getEmail());
+        logger.info("Community ID: {}", user.getCommunityId());
         try {
             User savedUser = userService.save(user);
             return ResponseEntity.ok(savedUser);
@@ -43,6 +45,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 
     
 
