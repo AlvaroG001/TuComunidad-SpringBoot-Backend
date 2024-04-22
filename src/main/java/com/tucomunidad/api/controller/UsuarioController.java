@@ -56,5 +56,17 @@ public class UsuarioController {
             });
     }
 
+    @PostMapping("/auth")
+    public ResponseEntity<?> authenticateUser(@RequestBody Usuario loginDetails) {
+        return usuarioService.findByEmail(loginDetails.getEmail())
+            .map(user -> {
+                if (user.getPassword().equals(loginDetails.getPassword())) {
+                    return ResponseEntity.ok(user); // Devuelve el usuario si la contraseña es correcta
+                } else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Contraseña incorrecta");
+                }
+            })
+            .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado"));
+    }
 
 }
