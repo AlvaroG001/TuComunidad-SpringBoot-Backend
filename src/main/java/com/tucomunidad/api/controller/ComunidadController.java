@@ -14,7 +14,7 @@ public class ComunidadController {
 
     @Autowired
     private ComunidadService comunidadService;
-    
+
     @GetMapping
     public List<Comunidad> getAllComunidades() {
         return comunidadService.findAll();
@@ -25,6 +25,12 @@ public class ComunidadController {
         return comunidadService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/exists/{id}")
+    public ResponseEntity<Boolean> checkCommunityExists(@PathVariable Long id) {
+        boolean exists = comunidadService.findById(id).isPresent();
+        return ResponseEntity.ok(exists);
     }
 
     @PostMapping

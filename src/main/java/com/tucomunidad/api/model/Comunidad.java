@@ -1,9 +1,11 @@
 package com.tucomunidad.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "comunidades")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // Ignora propiedades no necesarias para la serialización
 public class Comunidad {
 
     @Id
