@@ -25,12 +25,16 @@ public class DataInitializer {
     }
 
     private void insertUsers() {
-        String sql = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('Alvaro', 'alvaro@gmail.com', 'password123', 1, '1', '1', true);";
+        String sql = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('Alvaro', 'alvaro@gmail.com', '1', 1, '1', '1', true);";
         jdbcTemplate.execute(sql);
     }
 
     private void insertMeetings() {
         String sql = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Annual general meeting discussing community improvements and budget allocations.');";
         jdbcTemplate.execute(sql);
+        String sql1 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Annual general meeting discussing community improvements and budget allocations.');";
+        jdbcTemplate.execute(sql1);
+        String sql2 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Annual general meeting discussing community improvements and budget allocations.');";
+        jdbcTemplate.execute(sql2);
     }
 }
