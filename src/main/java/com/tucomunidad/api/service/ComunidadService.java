@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+ @Service
 public class ComunidadService {
 
     @Autowired
@@ -23,6 +23,7 @@ public class ComunidadService {
     }
 
     public Comunidad save(Comunidad comunidad) {
-        return comunidadRepository.save(comunidad);
+      return comunidadRepository.save(comunidad);
     }
 }
+
