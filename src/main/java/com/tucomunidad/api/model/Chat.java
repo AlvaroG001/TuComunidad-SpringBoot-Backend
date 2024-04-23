@@ -16,6 +16,10 @@ public class Chat {
     @Column(nullable = false, length = 1000)
     private String message;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     @Column(nullable = false)
     private String timestamp;  // Considera usar java.time.LocalDateTime
 
