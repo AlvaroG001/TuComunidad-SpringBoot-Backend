@@ -22,6 +22,10 @@ public class Votacion {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "community_id", nullable = false)
+    private Comunidad comunidad;
+
     @ElementCollection
     private List<Long> votantes; // Lista de IDs de usuarios que han votado
 
@@ -63,6 +67,14 @@ public class Votacion {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Comunidad getComunidad() {
+        return comunidad;
+    }
+
+    public void setComunidad(Comunidad comunidad) {
+        this.comunidad = comunidad;
     }
 
     public List<Long> getVotantes() {

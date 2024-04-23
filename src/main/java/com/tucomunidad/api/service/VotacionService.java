@@ -14,6 +14,10 @@ public class VotacionService {
     @Autowired
     private VotacionRepository votacionRepository;
 
+    public List<Votacion> findByCommunityId(Long communityId) {
+        return votacionRepository.findByComunidad_Id(communityId);
+    }
+
     public Votacion save(Votacion votacion) {
         return votacionRepository.save(votacion);
     }
@@ -28,5 +32,16 @@ public class VotacionService {
 
     public void deleteById(Long id) {
         votacionRepository.deleteById(id);
+    }
+    
+    public Votacion updateVotacion(Long votacionId, Votacion votacion) {
+        return votacionRepository.findById(votacionId).map(existingVotacion -> {
+            existingVotacion.setTitulo(votacion.getTitulo());
+            existingVotacion.setInformacion(votacion.getInformacion());
+            existingVotacion.setFecha(votacion.getFecha());
+            existingVotacion.setVotantes(votacion.getVotantes());
+            existingVotacion.setRespuestas(votacion.getRespuestas());
+            return votacionRepository.save(existingVotacion);
+        }).orElse(null);
     }
 }

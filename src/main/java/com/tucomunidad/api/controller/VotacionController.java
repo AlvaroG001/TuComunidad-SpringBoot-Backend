@@ -21,16 +21,27 @@ public class VotacionController {
         return ResponseEntity.ok(savedVotacion);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Votacion>> getAllVotaciones() {
-        return ResponseEntity.ok(votacionService.findAll());
+    @PostMapping("/{votacionId}/vote")
+    public ResponseEntity<Votacion> updateVotacion(@PathVariable Long votacionId, @RequestBody Votacion votacion) {
+        Votacion updatedVotacion = votacionService.updateVotacion(votacionId, votacion);
+        if (updatedVotacion == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedVotacion);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Votacion> getVotacionById(@PathVariable Long id) {
-        return votacionService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping
+    public ResponseEntity<?> getVotaciones(@RequestParam(required = false) String communityId) {
+        try {
+            if (communityId != null && !communityId.isEmpty()) {
+                Long id = Long.parseLong(communityId);
+                List<Votacion> votaciones = votacionService.findByCommunityId(id);
+                return ResponseEntity.ok(votaciones);
+            }
+            return ResponseEntity.ok(votacionService.findAll());
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid community ID: " + communityId);
+        }
     }
 
     @DeleteMapping("/{id}")
