@@ -1,0 +1,7 @@
+package com.tucomunidad.api.repository;
+
+import com.tucomunidad.api.model.Chat;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ChatRepository extends JpaRepository<Chat, Long> {
+}
