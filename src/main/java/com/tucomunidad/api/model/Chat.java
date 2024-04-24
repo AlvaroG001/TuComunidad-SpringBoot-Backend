@@ -26,14 +26,18 @@ public class Chat {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
-    @OneToMany(mappedBy = "parentChat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Chat> replies;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Chat parentChat;
 
-    // Getters and Setters
+    @OneToMany(mappedBy = "parentChat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Chat> replies;
+
+    // Constructores
+    public Chat() {
+    }
+
+    // Métodos getter y setter
     public Long getId() {
         return id;
     }
@@ -74,19 +78,19 @@ public class Chat {
         this.timestamp = timestamp;
     }
 
-    public List<Chat> getReplies() {
-        return replies;
-    }
-
-    public void setReplies(List<Chat> replies) {
-        this.replies = replies;
-    }
-
     public Chat getParentChat() {
         return parentChat;
     }
 
     public void setParentChat(Chat parentChat) {
         this.parentChat = parentChat;
+    }
+
+    public List<Chat> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Chat> replies) {
+        this.replies = replies;
     }
 }

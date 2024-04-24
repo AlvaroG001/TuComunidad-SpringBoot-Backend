@@ -24,11 +24,10 @@ public class ChatController {
     @PostMapping("/{chatId}/reply")
     public ResponseEntity<Chat> replyToChat(@PathVariable Long chatId, @RequestBody Chat reply) {
         Chat repliedChat = chatService.replyToChat(chatId, reply);
-        if (repliedChat != null) {
-            return ResponseEntity.ok(repliedChat);
-        } else {
+        if (repliedChat == null) {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(repliedChat);
     }
 
     @GetMapping
