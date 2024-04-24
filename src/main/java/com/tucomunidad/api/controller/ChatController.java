@@ -21,16 +21,24 @@ public class ChatController {
         return ResponseEntity.ok(savedChat);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Chat>> getAllChats() {
-        return ResponseEntity.ok(chatService.findAll());
+    @PostMapping("/{chatId}/reply")
+    public ResponseEntity<Chat> replyToChat(@PathVariable Long chatId, @RequestBody Chat reply) {
+        Chat repliedChat = chatService.replyToChat(chatId, reply);
+        if (repliedChat != null) {
+            return ResponseEntity.ok(repliedChat);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Chat> getChatById(@PathVariable Long id) {
-        return chatService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping
+    public ResponseEntity<List<Chat>> getChats(@RequestParam(required = false) Long communityId) {
+        if (communityId != null) {
+            List<Chat> chats = chatService.findByCommunityId(communityId);
+            return ResponseEntity.ok(chats);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -39,4 +47,3 @@ public class ChatController {
         return ResponseEntity.ok().build();
     }
 }
-

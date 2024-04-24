@@ -18,6 +18,7 @@ public class DataInitializer {
         insertUsers();
         insertMeetings();
         insertVotaciones();
+        insertChats();
     }
 
     private void insertCommunities() {
@@ -50,6 +51,14 @@ public class DataInitializer {
         jdbcTemplate.execute(sql2);
         String sql3 = "INSERT INTO votaciones (titulo, informacion, fecha, community_id) VALUES ('Votación  Alvaro', 'Votación anual para discutir mejoras en la comunidad y asignaciones presupuestarias.', '2024-05-23 18:30:00', 1);";
         jdbcTemplate.execute(sql3);
+    }
+
+    private void insertChats(){
+        String sql = "INSERT INTO chats (sender, message, timestamp, community_id) VALUES ('Usuario1', 'Hola vecinos!', '2022-05-01T10:15:00', 1)";
+        jdbcTemplate.execute(sql);
+        String sql2 = "INSERT INTO chats (sender, message, timestamp, community_id) VALUES ('Usuario2', '¿Alguien para el partido de tenis?', '2022-05-01T12:30:00', 1)";
+        jdbcTemplate.execute(sql2);
+        
     }
     
 }
