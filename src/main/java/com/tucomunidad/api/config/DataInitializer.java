@@ -30,6 +30,8 @@ public class DataInitializer {
     private void insertUsers() {
         String sql = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('Alvaro', 'alvaro@gmail.com', '1', 1, '1', '1', true);";
         jdbcTemplate.execute(sql);
+        String sql1 = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('ISST', 'isst@gmail.com', '1', 1, '1', '1', true);";
+        jdbcTemplate.execute(sql1);
     }
 
     private void insertMeetings() {
