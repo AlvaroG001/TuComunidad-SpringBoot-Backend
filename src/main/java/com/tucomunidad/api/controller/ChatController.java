@@ -31,7 +31,7 @@ public class ChatController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Chat>> getChats(@RequestParam(required = false) Long communityId) {
+    public ResponseEntity<List<Chat>> getChat(@RequestParam(required = false) Long communityId) {
         if (communityId != null) {
             List<Chat> chats = chatService.findByCommunityId(communityId);
             return ResponseEntity.ok(chats);

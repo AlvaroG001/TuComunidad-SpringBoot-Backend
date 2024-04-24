@@ -30,8 +30,11 @@ public class Chat {
     @JoinColumn(name = "parent_id")
     private Chat parentChat;
 
-    @OneToMany(mappedBy = "parentChat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Chat> replies;
+    @ElementCollection
+    private List<String> usuarios; // Lista de nombres de usuarios
+
+    @ElementCollection
+    private List<String> chat; // Lista de comentarios de cada usuario
 
     // Constructores
     public Chat() {
@@ -86,11 +89,19 @@ public class Chat {
         this.parentChat = parentChat;
     }
 
-    public List<Chat> getReplies() {
-        return replies;
+    public List<String> getUsuarios() {
+        return usuarios;
     }
 
-    public void setReplies(List<Chat> replies) {
-        this.replies = replies;
+    public void setUsuarios(List<String> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<String> getChat() {
+        return chat;
+    }
+
+    public void setChat(List<String> chat) {
+        this.chat = chat;
     }
 }
