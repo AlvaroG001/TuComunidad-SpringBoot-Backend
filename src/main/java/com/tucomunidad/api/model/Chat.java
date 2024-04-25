@@ -17,6 +17,9 @@ public class Chat {
     private Comunidad comunidad;
 
     @Column(nullable = false)
+    private String titulo;
+
+    @Column(nullable = false)
     private String sender;
 
     @Column(nullable = false, length = 1000)
@@ -24,17 +27,13 @@ public class Chat {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date timestamp;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
-    private Chat parentChat;
+    private Date fecha;
 
     @ElementCollection
-    private List<String> usuarios; // Lista de nombres de usuarios
+    private List<Long> usuarios; // Lista de nombres de usuarios
 
     @ElementCollection
-    private List<String> chat; // Lista de comentarios de cada usuario
+    private List<String> chats; // Lista de comentarios de cada usuario
 
     // Constructores
     public Chat() {
@@ -65,6 +64,14 @@ public class Chat {
         this.sender = sender;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -73,35 +80,27 @@ public class Chat {
         this.message = message;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setFecha(Date timestamp) {
+        this.fecha = timestamp;
     }
 
-    public Chat getParentChat() {
-        return parentChat;
-    }
-
-    public void setParentChat(Chat parentChat) {
-        this.parentChat = parentChat;
-    }
-
-    public List<String> getUsuarios() {
+    public List<Long> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<String> usuarios) {
+    public void setUsuarios(List<Long> usuarios) {
         this.usuarios = usuarios;
     }
 
-    public List<String> getChat() {
-        return chat;
+    public List<String> getChats() {
+        return chats;
     }
 
-    public void setChat(List<String> chat) {
-        this.chat = chat;
+    public void setChats(List<String> chats) {
+        this.chats = chats;
     }
 }

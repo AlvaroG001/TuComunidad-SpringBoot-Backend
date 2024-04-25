@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ChatRepository extends JpaRepository<Chat, Long> {
-    List<Chat> findByComunidad_IdAndParentChatIsNull(Long communityId);
+    List<Chat> findByComunidad_Id(Long communityId);
 }

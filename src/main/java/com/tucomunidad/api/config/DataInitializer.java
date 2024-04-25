@@ -54,9 +54,9 @@ public class DataInitializer {
     }
 
     private void insertChats(){
-        String sql = "INSERT INTO chats (sender, message, timestamp, community_id) VALUES ('Usuario1', 'Hola vecinos!', '2022-05-01T10:15:00', 1)";
+        String sql = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario1', 'Hola vecinos!', '2022-05-01T10:15:00', 1, 'derrama 1')";
         jdbcTemplate.execute(sql);
-        String sql2 = "INSERT INTO chats (sender, message, timestamp, community_id) VALUES ('Usuario2', '¿Alguien para el partido de tenis?', '2022-05-01T12:30:00', 1)";
+        String sql2 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario2', '¿Alguien para el partido de tenis?', '2022-05-01T12:30:00', 1, 'derrama 2')";
         jdbcTemplate.execute(sql2);
         
     }

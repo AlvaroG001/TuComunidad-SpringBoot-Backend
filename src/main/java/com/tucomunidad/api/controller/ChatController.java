@@ -21,22 +21,26 @@ public class ChatController {
         return ResponseEntity.ok(savedChat);
     }
 
-    @PostMapping("/{chatId}/reply")
-    public ResponseEntity<Chat> replyToChat(@PathVariable Long chatId, @RequestBody Chat reply) {
-        Chat repliedChat = chatService.replyToChat(chatId, reply);
-        if (repliedChat == null) {
+    @PostMapping("/{chatId}/chat")
+    public ResponseEntity<Chat> updateChat(@PathVariable Long chatId, @RequestBody Chat chat) {
+        Chat updatedChat = chatService.updateChat(chatId, chat);
+        if (updatedChat == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(repliedChat);
+        return ResponseEntity.ok(updatedChat);
     }
 
     @GetMapping
-    public ResponseEntity<List<Chat>> getChat(@RequestParam(required = false) Long communityId) {
-        if (communityId != null) {
-            List<Chat> chats = chatService.findByCommunityId(communityId);
-            return ResponseEntity.ok(chats);
-        } else {
-            return ResponseEntity.badRequest().body(null);
+    public ResponseEntity<?> getChats(@RequestParam(required = false) String communityId) {
+        try {
+            if (communityId != null && !communityId.isEmpty()) {
+                Long id = Long.parseLong(communityId);
+                List<Chat> chats = chatService.findByCommunityId(id);
+                return ResponseEntity.ok(chats);
+            }
+            return ResponseEntity.ok(chatService.findAll());
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid community ID: " + communityId);
         }
     }
 

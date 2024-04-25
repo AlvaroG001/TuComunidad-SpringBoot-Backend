@@ -22,18 +22,26 @@ public class ChatService {
         return chatRepository.findById(id);
     }
 
+    public List<Chat> findAll() {
+        return chatRepository.findAll();
+    }
+
     public List<Chat> findByCommunityId(Long communityId) {
-        return chatRepository.findByComunidad_IdAndParentChatIsNull(communityId);
+        return chatRepository.findByComunidad_Id(communityId);
     }
 
     public void deleteById(Long id) {
         chatRepository.deleteById(id);
     }
 
-    public Chat replyToChat(Long chatId, Chat reply) {
-        return chatRepository.findById(chatId).map(parent -> {
-            reply.setParentChat(parent);
-            return chatRepository.save(reply);
+    public Chat updateChat(Long chatId, Chat chat) {
+        return chatRepository.findById(chatId).map(existingChat -> {
+            existingChat.setSender(chat.getSender());
+            existingChat.setMessage(chat.getMessage());
+            existingChat.setFecha(chat.getFecha());
+            existingChat.setUsuarios(chat.getUsuarios());
+            existingChat.setChats(chat.getChats());
+            return chatRepository.save(existingChat);
         }).orElse(null);
     }
 }
