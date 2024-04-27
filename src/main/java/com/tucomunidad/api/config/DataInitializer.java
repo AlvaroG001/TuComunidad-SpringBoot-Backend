@@ -3,6 +3,7 @@ package com.tucomunidad.api.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.annotation.PostConstruct;
 
@@ -11,6 +12,9 @@ public class DataInitializer {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder; // Inyección del PasswordEncoder
 
     @PostConstruct
     public void initialize() {
@@ -21,17 +25,19 @@ public class DataInitializer {
         insertChats();
     }
 
+    private void insertUsers() {
+        // Cifrado correcto de la contraseña
+        String encodedPassword = passwordEncoder.encode("123456");
+        jdbcTemplate.update(
+            "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "Alvaro", "alvaro@gmail.com", encodedPassword, 1, "1", "1", true
+        );
+    }
+
     private void insertCommunities() {
         String sql = "INSERT INTO comunidades (name, cinema, gym, library, padel, pool) VALUES ('Comunidad Uno', true, false, true, false, true);";
         jdbcTemplate.execute(sql);
         String sql1 = "INSERT INTO comunidades (name, cinema, gym, library, padel, pool) VALUES ('Comunidad Dos', true, false, true, false, true);";
-        jdbcTemplate.execute(sql1);
-    }
-
-    private void insertUsers() {
-        String sql = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('Alvaro', 'alvaro@gmail.com', '1', 1, '1', '1', true);";
-        jdbcTemplate.execute(sql);
-        String sql1 = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('ISST', 'ISST@gmail.com', '1', 1, '1', '1', true);";
         jdbcTemplate.execute(sql1);
     }
 
@@ -53,12 +59,12 @@ public class DataInitializer {
         jdbcTemplate.execute(sql3);
     }
 
-    private void insertChats(){
+    private void insertChats() {
         String sql = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario1', 'Hola vecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinos!', '2022-05-01T10:15:00', 1, 'derrama 1')";
         jdbcTemplate.execute(sql);
         String sql2 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario2', '¿Alguien para el partido de tenis?', '2022-05-01T12:30:00', 1, 'derrama 2')";
         jdbcTemplate.execute(sql2);
-        
+
     }
-    
+
 }
