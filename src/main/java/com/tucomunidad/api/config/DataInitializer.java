@@ -33,6 +33,8 @@ public class DataInitializer {
         jdbcTemplate.execute(sql);
         String sql1 = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('ISST', 'ISST@gmail.com', '1', 1, '1', '1', true);";
         jdbcTemplate.execute(sql1);
+        String sql2 = "INSERT INTO usuarios (name, email, password, community_id, door, floor, is_president) VALUES ('Pablo', 'pablo@gmail.com', '1', 1, '1', '1', true);";
+        jdbcTemplate.execute(sql2);
     }
 
     private void insertMeetings() {
@@ -58,6 +60,8 @@ public class DataInitializer {
         jdbcTemplate.execute(sql);
         String sql2 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario2', '¿Alguien para el partido de tenis?', '2022-05-01T12:30:00', 1, 'derrama 2')";
         jdbcTemplate.execute(sql2);
+        String sql3 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario3', '¡Hola vecino! Bienvenido a nuestra aplicación comunitaria. Aquí podrás conectarte con tus vecinos, compartir información importante y participar en conversaciones que afectan a nuestra comunidad. Únete a nosotros para mantenernos informados, colaborar juntos y hacer de nuestro vecindario un lugar aún mejor para vivir. ¡Es un placer tenerte aquí!', '2022-05-01T12:30:00', 1, '¡Bienvenido a la Comunidad!')";
+        jdbcTemplate.execute(sql3);
         
     }
     
