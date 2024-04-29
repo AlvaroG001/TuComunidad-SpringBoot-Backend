@@ -30,7 +30,7 @@ public class Chat {
     private Date fecha;
 
     @ElementCollection
-    private List<Long> usuarios; // Lista de nombres de usuarios
+    private List<String> usuarios; // Lista de nombres de usuarios
 
     @ElementCollection
     @Column (nullable = false, columnDefinition = "TEXT")
@@ -89,11 +89,11 @@ public class Chat {
         this.fecha = timestamp;
     }
 
-    public List<Long> getUsuarios() {
+    public List<String> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Long> usuarios) {
+    public void setUsuarios(List<String> usuarios) {
         this.usuarios = usuarios;
     }
 
