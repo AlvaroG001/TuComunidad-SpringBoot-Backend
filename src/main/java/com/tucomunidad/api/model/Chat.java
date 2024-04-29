@@ -22,7 +22,7 @@ public class Chat {
     @Column(nullable = false)
     private String sender;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = 2000)
     private String message;
 
     @Column(nullable = false)
@@ -33,6 +33,7 @@ public class Chat {
     private List<Long> usuarios; // Lista de nombres de usuarios
 
     @ElementCollection
+    @Column (nullable = false, columnDefinition = "TEXT")
     private List<String> chats; // Lista de comentarios de cada usuario
 
     // Constructores
