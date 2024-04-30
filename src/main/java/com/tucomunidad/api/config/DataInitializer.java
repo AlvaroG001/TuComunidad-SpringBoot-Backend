@@ -38,11 +38,11 @@ public class DataInitializer {
     }
 
     private void insertMeetings() {
-        String sql = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Reunión primer trimestre del año 2024');";
+        String sql = "INSERT INTO reuniones (community_id, titulo, dia, hora, mes, año, information) VALUES (1, 'Reunión primer trimestre del año 2024', '21', '18:30', 'Mayo', '2024', 'Información sobre la primera reunión del trimestre del año 2024');";
         jdbcTemplate.execute(sql);
-        String sql1 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Asamblea general extraordinaria para tratar temas urgentes y tomar decisiones excepcionales');";
+        String sql1 = "INSERT INTO reuniones (community_id, titulo, dia, hora, mes, año, information) VALUES (1, 'Asamblea general', '21', '18:30', 'Mayo', '2024', 'Asamblea general extraordinaria para tratar temas urgentes y tomar decisiones excepcionales');";
         jdbcTemplate.execute(sql1);
-        String sql2 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Sesión de planificación de eventos para organizar actividades comunitarias y festividades');";
+        String sql2 = "INSERT INTO reuniones (community_id, titulo, dia, hora, mes, año, information) VALUES (1, 'Sesión de planificación de eventos', '21', '18:30', 'Mayo', '2024', 'Sesión de planificación de eventos para organizar actividades comunitarias y festividades');";
         jdbcTemplate.execute(sql2);
     }
 

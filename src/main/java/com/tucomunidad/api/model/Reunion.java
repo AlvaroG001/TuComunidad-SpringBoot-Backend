@@ -14,6 +14,9 @@ public class Reunion {
     @JoinColumn(name = "community_id", nullable = false)
     private Comunidad comunidad;
 
+    @Column(nullable = false)
+    private String titulo;
+
     @Column(name = "dia", nullable = false)
     private String day;
 
@@ -49,6 +52,14 @@ public class Reunion {
 
     public void setComunidad(Comunidad comunidad) {
         this.comunidad = comunidad;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDay() {
