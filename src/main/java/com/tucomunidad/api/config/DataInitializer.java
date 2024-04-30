@@ -38,11 +38,11 @@ public class DataInitializer {
     }
 
     private void insertMeetings() {
-        String sql = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Annual general meeting discussing community improvements and budget allocations.');";
+        String sql = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Reunión primer trimestre del año 2024');";
         jdbcTemplate.execute(sql);
-        String sql1 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Annual general meeting discussing community improvements and budget allocations.');";
+        String sql1 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Asamblea general extraordinaria para tratar temas urgentes y tomar decisiones excepcionales');";
         jdbcTemplate.execute(sql1);
-        String sql2 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Annual general meeting discussing community improvements and budget allocations.');";
+        String sql2 = "INSERT INTO reuniones (community_id, dia, hora, mes, año, information) VALUES (1, '21', '18:30', 'Mayo', '2024', 'Sesión de planificación de eventos para organizar actividades comunitarias y festividades');";
         jdbcTemplate.execute(sql2);
     }
 
@@ -56,12 +56,14 @@ public class DataInitializer {
     }
 
     private void insertChats(){
-        String sql = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario1', 'Hola vecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinos!', '2022-05-01T10:15:00', 1, 'derrama 1')";
+        String sql = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Alvaro', 'Hola vecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinos!', '2022-05-01T10:15:00', 1, 'derrama 1')";
         jdbcTemplate.execute(sql);
-        String sql2 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario2', '¿Alguien para el partido de tenis?', '2022-05-01T12:30:00', 1, 'derrama 2')";
+        String sql2 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Pablo', '¿Alguien para el partido de tenis?', '2022-05-01T12:30:00', 1, 'derrama 2')";
         jdbcTemplate.execute(sql2);
-        String sql3 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Usuario3', '¡Hola vecino! Bienvenido a nuestra aplicación comunitaria. Aquí podrás conectarte con tus vecinos, compartir información importante y participar en conversaciones que afectan a nuestra comunidad. Únete a nosotros para mantenernos informados, colaborar juntos y hacer de nuestro vecindario un lugar aún mejor para vivir. ¡Es un placer tenerte aquí!', '2022-05-01T12:30:00', 1, '¡Bienvenido a la Comunidad!')";
+        String sql3 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('David', '¡Hola vecino! Bienvenido a nuestra aplicación comunitaria. Aquí podrás conectarte con tus vecinos, compartir información importante y participar en conversaciones que afectan a nuestra comunidad. Únete a nosotros para mantenernos informados, colaborar juntos y hacer de nuestro vecindario un lugar aún mejor para vivir. ¡Es un placer tenerte aquí!', '2022-05-01T12:30:00', 1, '¡Bienvenido a la Comunidad!')";
         jdbcTemplate.execute(sql3);
+        String sql4 = "INSERT INTO chats (sender, message, fecha, community_id, titulo) VALUES ('Pablo', 'Hola vecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinosvecinos!', '2022-05-01T10:15:00', 1, 'derrama 1')";
+        jdbcTemplate.execute(sql4);
         
     }
     
