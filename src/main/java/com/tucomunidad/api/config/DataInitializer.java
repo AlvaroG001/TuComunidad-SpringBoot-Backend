@@ -22,7 +22,7 @@ public class DataInitializer {
     }
 
     private void insertCommunities() {
-        String sql = "INSERT INTO comunidades (name, cinema, gym, library, padel, pool) VALUES ('Comunidad Uno', true, false, true, false, true);";
+        String sql = "INSERT INTO comunidades (name, cinema, gym, library, padel, pool) VALUES ('C. Sajonia Nº9', true, false, true, false, true);";
         jdbcTemplate.execute(sql);
         String sql1 = "INSERT INTO comunidades (name, cinema, gym, library, padel, pool) VALUES ('Comunidad Dos', true, false, true, false, true);";
         jdbcTemplate.execute(sql1);
