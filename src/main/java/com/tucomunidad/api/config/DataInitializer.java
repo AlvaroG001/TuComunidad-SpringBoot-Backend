@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 
 @Component
 public class DataInitializer {
@@ -13,7 +14,7 @@ public class DataInitializer {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
+    @Resource
     private PasswordEncoder passwordEncoder; // Inyección del PasswordEncoder
 
     @PostConstruct
