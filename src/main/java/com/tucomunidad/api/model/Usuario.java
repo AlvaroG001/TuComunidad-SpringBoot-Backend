@@ -32,6 +32,9 @@ public class Usuario {
     @Column(nullable = false)
     private boolean isPresident;
 
+    @Column(nullable = false)
+    private boolean isAdmin;
+
     public Usuario() {}
 
     // Getters y Setters
@@ -95,7 +98,15 @@ public class Usuario {
         return isPresident;
     }
 
-    public void setPresident(boolean isPresident) {
-        this.isPresident = isPresident;
+    public void setPresident(boolean isAdmin) {
+        this.isAdmin = isPresident;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
